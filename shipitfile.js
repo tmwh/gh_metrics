@@ -4,14 +4,14 @@ module.exports = function (shipit) {
 
     shipit.initConfig({
         default: {
-            workspace: '~/tmp/github-monitor',
+            workspace: '~/serv_files/github-monitor',
             deployTo: '~/tmp/homeserver',
             repositoryUrl: 'git@gitlab.com:katlavan/home_api.git',
             branch: 'hooks-test-branch',
             ignores: ['.git', 'node_modules'],
             rsync: ['--del'],
             keepReleases: 2
-            //key: '~/.ssh/id_rsa.pub',
+            //key: '~/.ssh/id_rsa.pub'
             //shallowClone: true
         },
         staging: {
