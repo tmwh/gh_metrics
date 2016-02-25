@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  each val, index in issues
+    p=val.actor.login
+    p=val.event
+    if val.label != undefined
+      p LABEL+++++++ #{val.label.name} ++++++++
+    - var date = new Date(val.created);
+    p=date
+    p #{val.issue.title} - numbet #{val.issue.number}
+    br
+    hr

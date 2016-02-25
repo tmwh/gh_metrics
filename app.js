@@ -5,9 +5,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/gh_metrics');
+var db = mongoose.connection;
+var issues_p = require('./parser/issues_parser.es6');
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log('MONGO');
+});
+var Events = require('./models/events.es6');
+
+var routes = require('./routes/index.es6');
 var users = require('./routes/users');
-var hooks = require('./routes/hooks');
+var issues = require('./routes/issues.es6');
 
 var app = express();
 
@@ -26,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/hooks', hooks);
+app.use('/issues', issues);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
