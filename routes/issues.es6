@@ -2,7 +2,8 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
-let Event = require('../models/events.es6').Event;
+import { Event } from '../db/schema.es6';
+//let Event = require('../models/schema.es6').Event;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {

@@ -8,14 +8,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/gh_metrics');
 var db = mongoose.connection;
-var issues_p = require('./parser/issues_parser.es6');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
   console.log('MONGO');
 });
-var Events = require('./models/events.es6');
 
 var routes = require('./routes/index.es6');
 var users = require('./routes/users');

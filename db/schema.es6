@@ -1,6 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var actorSchema = mongoose.Schema({
   uid: Number,
@@ -34,11 +34,9 @@ var Label = mongoose.model('Label', labelSchema);
 var Issue = mongoose.model('Issue', issueSchema);
 var Event = mongoose.model('Event', eventSchema);
 
-let Schema = {
+export let Schema = {
   Actor,
   Label,
   Issue,
   Event
 };
-
-module.exports = Schema;
