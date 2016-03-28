@@ -4,30 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-//var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/gh_metrics');
-//var db = mongoose.connection;
-//
-//db.on('error', console.error.bind(console, 'connection error:'));
-//db.once('open', function() {
-//  // we're connected!
-//  console.log('MONGO');
-//});
-
-import { Db } from './db/db.es6';
-
+var session = require('express-session');
 var routes = require('./routes/index.es6');
-var users = require('./routes/users');
 var issues = require('./routes/issues.es6');
+var hooks = require('./routes/hooks.es6');
 
 var app = express();
+
+app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,8 +26,8 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/issues', issues);
+app.use('/hooks', hooks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

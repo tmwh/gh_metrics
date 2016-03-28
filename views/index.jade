@@ -1,9 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  p Welcom to Github metrics
-
-  button.btn.btn-primary.update-git Update Data from Git
-  br
-  button.btn.btn-primary.update-btn Without query
+  .page-header
+    h1.text-center Welcome to #{title}
+  .col-md-6.col-md-offset-3
+    .alert.alert-info
+      p Repo information. Please refresh Github issue at first
+    .form-group
+      label
+        | User
+        input.form-control(disabled value="katlavan")
+    .form-group
+      label
+        | Repo
+        input.form-control(disabled value="check_delivery_time_and_status")
+    a.btn.btn-info(href="https://github.com/katlavan/check_delivery_time_and_status/" target="_blank") Repo Link
+    br
+    br
+    a.btn.btn-info(href="https://waffle.io/katlavan/check_delivery_time_and_status" target="_blank") Waffle Board
+  .col-sm-12.text-center
+    button.btn.btn-primary.update-git
+      i.glyphicon.glyphicon-repeat
+      | Refresh Github Issues

@@ -1,0 +1,6 @@
+before_script:
+  - node -v
+  - npm update
+rspec:
+  script:
+    - shipit staging deploy

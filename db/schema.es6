@@ -9,7 +9,8 @@ var actorSchema = mongoose.Schema({
 });
 
 var labelSchema = mongoose.Schema({
-  name: String
+  name: String,
+  color: String
 });
 
 

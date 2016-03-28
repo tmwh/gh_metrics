@@ -5,3 +5,4 @@
 .idea
 /node_modules
 # Created by .ignore support plugin (hsz.mobi)
+/public/stylesheets/style.css

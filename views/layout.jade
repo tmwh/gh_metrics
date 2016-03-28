@@ -3,10 +3,19 @@ html
   head
     title= title
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    include ./header.jade
+    .container-fluid
+      .row
+        block content
     script(src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" crossorigin="anonymous")
+    //script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.js" crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.7.0/lodash.min.js" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" crossorigin="anonymous")
     script(src='/javascripts/app.js')

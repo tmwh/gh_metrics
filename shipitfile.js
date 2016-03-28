@@ -7,7 +7,7 @@ module.exports = function (shipit) {
             workspace: '~/serv_files/github-monitor',
             deployTo: '~/tmp/homeserver',
             repositoryUrl: 'git@gitlab.com:katlavan/home_api.git',
-            branch: 'hooks-test-branch',
+            branch: 'develop',
             ignores: ['.git', 'node_modules'],
             rsync: ['--del'],
             keepReleases: 2
