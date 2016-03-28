@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  form#graph(action="/issues/upload", enctype="multipart/form-data", method="post")
+    .container-fluid
+      .row
+        .col-sm-3
+          .form-group
+            label(for="startDate") Date start
+            input.form-control#startDate(type="date" name="startDate")
+        .col-sm-3
+          .form-group
+            label(for='endDate') End date
+            input.form-control#endDate(type="date" name="endDate")
+        .checkbox
+          label
+            input.form-control#progress(type="checkbox" name="progress")
+            | progress
+        .col-sm-6
+          input.btn.btn-success(type="submit" value="Upload")
+      .row
+
+          canvas#graphic( width="400" height="400")
+  //'<form action="/upload" enctype="multipart/form-data" method="post">'+
+     '<input type="text" name="title"><br>'+
+     '<input type="file" name="upload" multiple="multiple"><br>'+
+     '<input type="submit" value="Upload">'+
+     '</form>'
+  hr
+  each val, i in finalArray
+    h1 Header #{i}
+    ul
+    each v, i  in val
+      li #{v} --- #{i}

@@ -1,28 +1,11 @@
-'use strict';
-//var mongoose = require('mongoose');
-var express = require('express');
-var router = express.Router();
-
-
-//import formidable from 'formidable';
-//import util from 'util';
 import { Schema } from './../db/schema.es6';
 import { Db as db }  from './../db/db.es6';
-//import { parseEventstoGraphs, eventList, labelsList, startDate, lastDate } from '../parser/Metrics.es6';
 
-let Event = Schema.Event;
+export let startDate = new Date("2016-03-01T19:21:39Z");
+export let lastDate = new Date('"2016-03-20T19:21:39Z"');
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  Event.find(function (err, events) {
-    if (err) return console.error(err);
-    res.render('issues', {issues: events});
-  });
-});
-const eventList = ['labeled', 'unlabeled'];
-const labelsList = ['ready', 'progress', 'testing QA'];
-const startDate = new Date("2016-03-01T09:23:14Z");
-const lastDate = new Date("2016-03-28T09:23:14Z");
+export const eventList = ['labeled', 'unlabeled'];
+export const labelsList = ['ready', 'progress', 'testing QA'];
 
 class dayObject {
   constructor(date, props) {
@@ -37,15 +20,18 @@ class dayObject {
   }
 }
 
-function parseEventstoGraphs(ev, res) {
+export function parseEventstoGraphs(ev, res) {
   let finalArray = [];
   let dayRange = (lastDate - startDate) / 8.64e7;
   let currentDate = new Date("2016-03-01T09:23:14Z");
+    //console.log(ev);
+
   for (let j = 1; j <= dayRange + 1; j++) {
     finalArray.push(new dayObject(currentDate, labelsList));
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
+  console.log(finalArray);
   let dayOfEvents = new dayObject(currentDate, labelsList);
 
   // Added status by first unlabeled
@@ -84,34 +70,6 @@ function parseEventstoGraphs(ev, res) {
       }
     }
   }
-//console.log(finalArray);
-//  res.render('metrics', {finalArray: finalArray});
-  res.status(200).send(finalArray);
+  console.log(finalArray);
+  res.render('metrics', {finalArray: finalArray});
 }
-
-router.get('/data', function (req, res) {
-
-  res.render('metrics', {finalArray: []});
-});
-
-router.post('/upload', (req, res)=> {
-  console.log(req.body);
-  Event.find({
-    event: {$in: eventList},
-    "label.name": {$in: labelsList},
-    created: {
-      $gte: startDate,
-      $lt: lastDate
-    }
-
-  }).sort({created: 'asc'}).exec(
-    function (err, events) {
-      if (err) return console.error(err);
-      parseEventstoGraphs(events, res);
-      //res.render('issues', {issues: events});
-    });
-  //res.status(200).send('received upload:\n\n');
-});
-
-module.exports = router;
-
