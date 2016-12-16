@@ -16,8 +16,6 @@ gem 'sprockets-es6'
 
 gem 'haml'
 
-gem 'jquery-rails'
-
 gem 'jbuilder', '~> 2.5'
 
 gem 'github_api'
@@ -37,5 +35,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-chartist'
+  gem 'rails-assets-materialize'
+  gem 'rails-assets-fontawesome'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-chartLineData gem
+gem 'tzinfo-chartLineData', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
