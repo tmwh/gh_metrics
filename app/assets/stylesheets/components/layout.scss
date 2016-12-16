@@ -1,0 +1,43 @@
+$primary-color: #26a69a;
+
+nav {
+  background-color: $primary-color;
+}
+
+html, body, .container {
+  min-height: 100vh;
+}
+
+body {
+  background: lighten($primary-color, 50%);
+}
+
+.container {
+  margin-top: 0.75rem;
+  background-color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.bar-primary {
+  background-color: $primary-color;
+  padding: 1rem 2rem;
+  margin: {
+    left: -0.75rem;
+    right: -0.75rem;
+  }
+
+  .title {
+    color: #fff;
+    font-size: 1.75rem;
+  }
+}
+
+.sign-in-wrapper {
+  max-width: 50rem;
+  margin: 0 auto;
+
+  .submit-btn {
+    display: block;
+  }
+}
