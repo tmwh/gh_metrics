@@ -7,7 +7,9 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
   %body
+
     = render partial: 'layouts/topbar'
     .container
+      = render 'shared/flash', notice: flash[:notice]
       = yield
     = yield :after_content

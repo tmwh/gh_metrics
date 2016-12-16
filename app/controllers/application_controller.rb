@@ -7,13 +7,13 @@ class ApplicationController < ActionController::Base
         session[:token], session[:username], 'check_delivery_time_and_status'
       ).perform
     else
+      flash[:notice] = 'Fuck you!!!!!!!!!!!!!!.'
       redirect_to_login
     end
   end
 
-  helper
-
   def redirect_to_login
+    flash[:notice] = 'You have successfully logged out.'
     redirect_to login_path
   end
 end
