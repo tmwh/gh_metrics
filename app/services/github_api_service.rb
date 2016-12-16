@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 class GithubApiService
-
   def perform
-    github = Github.new oauth_token: ENV.fetch('GITHUB_TOKEN')
-    puts github.scopes.list
+    github.repos.all
   end
 
-  def event
+  private
 
+  def github
+    @_github ||= Github.new oauth_token: ENV.fetch('GITHUB_TOKEN')
   end
 end
