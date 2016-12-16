@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'github_api'
 
+gem 'dotenv-rails'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
