@@ -15,3 +15,6 @@
         %a.dropdown-button{'chartLineData-activates': 'dropdown1', href: "#!"}
           Repositories
           %i.material-icons.right
+      - if login?
+        %li
+          = link_to 'Logout', logout_path, method: :destroy, class: 'right'

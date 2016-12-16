@@ -11,8 +11,7 @@ class AuthenticationController < ApplicationController
   end
 
   def destroy
-    session[:username] = ''
-    session[:token] = ''
+    reset_session
     redirect_to_login
   end
 end

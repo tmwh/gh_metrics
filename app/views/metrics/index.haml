@@ -1,2 +1,3 @@
 .charts-wrapper
   = render partial: 'chart'
+= Github.new(oauth_token: session[:token]).repos.list
