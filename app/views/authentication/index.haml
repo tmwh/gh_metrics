@@ -1,0 +1,12 @@
+.bar-primary
+  .title Sign in form
+.sign-in-wrapper
+  = form_tag login_path, method: :post, class: 'sign-in' do
+    .row
+      .input-field
+        = text_field :user, 'name'
+    .row
+      .input-field
+        = text_field :user, 'token'
+    = submit_tag 'sign in with your github credentials',
+      class: 'waves-effect waves-light btn-large submit-btn'

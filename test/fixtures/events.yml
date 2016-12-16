@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  github_id: 1
+  label_name: MyString
+  label_color: MyString
+  actor: MyString
+  created: MyString
+
+two:
+  github_id: 1
+  label_name: MyString
+  label_color: MyString
+  actor: MyString
+  created: MyString
