@@ -15,5 +15,6 @@
 .DS_Store
 .keep
 .idea/
+.ruby-version
 # Ignore Byebug command history file.
 .byebug_history
