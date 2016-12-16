@@ -4,7 +4,7 @@ ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
-gem 'pg', '~> 0.18'
+gem 'pg'
 
 gem 'puma', '~> 3.0'
 
@@ -19,6 +19,8 @@ gem 'haml'
 gem 'jquery-rails'
 
 gem 'jbuilder', '~> 2.5'
+
+gem 'github_api'
 
 group :development, :test do
   gem 'byebug', platform: :mri
