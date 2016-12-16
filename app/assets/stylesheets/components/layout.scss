@@ -4,7 +4,7 @@ nav {
   background-color: $primary-color;
 }
 
-html, body, .container {
+html, body {
   min-height: 100vh;
 }
 
@@ -15,8 +15,7 @@ body {
 .container {
   margin-top: 0.75rem;
   background-color: #fff;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0 0.75rem 0.75rem 0.75rem;
 }
 
 .bar-primary {

@@ -3,10 +3,13 @@
 .row
   .col.s12
     #line-chart
-.bar-primary
-  .title Issue today
-.row
-  .col.s6
-    #pie-chart
-  .col-s6
+
+- content_for :after_content do
+  .container
+    .bar-primary
+      .title Issue today
+    .row
+      .col.s6
+        #pie-chart
+      .col-s6
 
