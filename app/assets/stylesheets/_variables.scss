@@ -1,0 +1,9 @@
+$primary-color: #50a4fe !default; //Main application theme color
+
+//Charts
+$labels-color: rgba(0, 0, 0, 0.5);
+$grid-color:  rgb(47, 47, 47);
+$ct-line-a: saturate($primary-color, 20%);
+$ct-line-b: adjust-hue($primary-color, 20%);
+$ct-line-c: desaturate($primary-color, 20%);
+

@@ -4,5 +4,6 @@ class MetricsController < ApplicationController
 
   def index
     @events = Event.all
+    @labels = LabelsCarrier.new(@events)
   end
 end
