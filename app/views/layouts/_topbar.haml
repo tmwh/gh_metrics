@@ -1,20 +1,18 @@
+- if login?
+  %ul#dropdown1.dropdown-content
+    %li
+      %a{:href => "#!"} Settings
+    %li
+      %a{:href => "#!"} Account
+    %li.divider
+      %li= link_to 'Logout', logout_path, method: :destroy
+
 %nav
   .nav-wrapper
     = link_to '#', class: 'brand-logo left' do
       Github Metrics
-    %ul#dropdown1.dropdown-content
-      %li
-        %a{:href => "#!"} Repo1
-      %li
-        %a{:href => "#!"} Repo2
-      %li.divider
-      %li
-        %a{:href => "#!"} Repo3
-    %ul#nav-mobile.right
-      %li
-        %a.dropdown-button{'chartLineData-activates': 'dropdown1', href: "#!"}
-          Repositories
-          %i.material-icons.right
-      - if login?
+    - if login?
+      %ul.right.hide-on-med-and-down
         %li
-          = link_to 'Logout', logout_path, method: :destroy, class: 'right'
+          %a.dropdown-button{"data-activates" => "dropdown1", :href => "#!"}
+            User
