@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217023427) do
+ActiveRecord::Schema.define(version: 20161217052513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20161217023427) do
     t.string   "label_name"
     t.string   "label_color"
     t.string   "actor"
-    t.string   "created"
+    t.date     "created"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "repo"

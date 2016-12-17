@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 class GroupedEventsCarrier
   WEEK = 7
+
   attr_reader :events
 
   def initialize(events)
@@ -7,20 +9,14 @@ class GroupedEventsCarrier
   end
 
   def collection
-    events.reduce([]) do |arr, event|
-      if event_in_last_week_range?(event)
-        arr <<
+    WEEK.times.reduce([]) do |arr, index|
+      if (0..6).include? index
+        nested_arr = []
+        nested_arr << events.where(created: [Date.today - index], label_name: 'Status: In Progress').count
+        nested_arr << events.where(created: [Date.today - index], label_name: 'Status: Code Review').count
+        nested_arr << events.where(created: [Date.today - index], label_name: 'Status: To Verify').count
+        arr << nested_arr
       end
     end
-  end
-
-  private
-
-  def event_day_from_now(event)
-    (Date.today - Date.parse(event.created)).to_i
-  end
-
-  def event_in_last_week_range?(event)
-    event_day_from_now <= WEEK
   end
 end
