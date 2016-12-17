@@ -2,7 +2,7 @@
   .title Cumulative flow diagram
 .row
   .col.s12
-    #line-chart.ct-chart
+    #line-chart.ct-chart{data: {collection: @events}}
 
 - content_for :after_content do
   .container

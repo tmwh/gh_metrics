@@ -15,7 +15,11 @@ let [chartLineData, pieChartData] =
 
 
 $(()=> {
+  let data  = $('#line-chart').data('collection');
+
   if ($('#line-chart, #pie-chart').length) {
+    if (data.length) {chartLineData.series = data}
+
     let lineChart = new Chartist.Line('#line-chart', chartLineData, {
       low: 0,
       showArea: true,
