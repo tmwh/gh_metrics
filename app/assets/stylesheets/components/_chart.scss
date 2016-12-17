@@ -82,3 +82,17 @@
   }
 }
 
+.ct-series-a .ct-slice-pie,
+.ct-series-a .ct-area {
+  fill: $ct-line-a;
+}
+
+.ct-series-b .ct-slice-pie,
+.ct-series-b .ct-area {
+  fill: $ct-line-b;
+}
+
+.ct-series-c .ct-slice-pie,
+.ct-series-c .ct-area {
+  fill: darken($ct-line-c, 20%);
+}
