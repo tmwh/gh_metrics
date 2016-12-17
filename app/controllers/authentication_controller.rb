@@ -3,10 +3,15 @@ class AuthenticationController < ApplicationController
   end
 
   def create
-    if params[:user][:name].present? && params[:user][:token].present?
-      session[:username] = params[:user][:name]
-      session[:token] = params[:user][:token]
-      redirect_to root_path
+    login_or_create_user
+    session[:username] = params[:user][:name]
+    session[:token] = params[:user][:token]
+    redirect_to root_path
+  end
+
+  def login_or_create_user
+    if User.find_by_github_name(params[:user][:name]).nil?
+      User.create!(github_name: params[:user][:name])
     end
   end
 

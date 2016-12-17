@@ -5,10 +5,10 @@
     .row
       .input-field
         %label Name
-        = text_field :user, 'name'
+        = text_field :user, 'name', require: true
     .row
       .input-field
         %label Token
-        = text_field :user, 'token'
+        = text_field :user, 'token', require: true
     = submit_tag 'sign in with your github credentials',
       class: 'waves-effect waves-light btn-large submit-btn'

@@ -1,18 +1,31 @@
-- if login?
-  %ul#dropdown1.dropdown-content
-    %li
-      %a{:href => "#!"} Settings
-    %li
-      %a{:href => "#!"} Account
-    %li.divider
-      %li= link_to 'Logout', logout_path, method: :destroy
-
 %nav
   .nav-wrapper
     = link_to '#', class: 'brand-logo left' do
       Github Metrics
+    %ul#dropdown1.dropdown-content
+      %li
+        %a{:href => "#!"} Repo1
+      %li
+        %a{:href => "#!"} Repo2
+      %li.divider
+      %li
+        %a{:href => "#!"} Repo3
     - if login?
-      %ul.right.hide-on-med-and-down
+      %ul
+        = form_tag root_path(@student, repository: ''), method: :get do
+          .select-wrapper.right
+            = select_tag 'repository', options_for_select(@repositories), class: 'js-repositories-select'
+      %ul#nav-mobile.right
         %li
-          %a.dropdown-button{"data-activates" => "dropdown1", :href => "#!"}
-            User
+          %a.dropdown-button{'chartLineData-activates': 'dropdown1', href: "#!"}
+            Repositories
+            %i.material-icons.right
+      - if login?
+        %li
+          = link_to 'Logout', logout_path, method: :destroy, class: 'right'
+
+:javascript
+  $('select').material_select();
+  $('.js-repositories-select').on('change', function(){
+    $(this).closest('form').submit();
+  });
