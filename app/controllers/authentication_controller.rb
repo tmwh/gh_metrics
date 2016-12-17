@@ -6,6 +6,7 @@ class AuthenticationController < ApplicationController
     login_or_create_user
     session[:username] = params[:user][:name]
     session[:token] = params[:user][:token]
+    LoadEventsFromGithubService.new(session[:token], session[:username]).perform
     redirect_to root_path
   end
 

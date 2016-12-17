@@ -3,11 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :login?
 
   def check_user_login
-    if login?
-      LoadEventsFromGithubService.new(
-        session[:token], session[:username], 'check_delivery_time_and_status'
-      ).perform
-    else
+    unless login?
       flash[:notice] = 'Please login first!'
       redirect_to_login
       reset_session

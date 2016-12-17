@@ -1,4 +1,3 @@
 .charts-wrapper
   = render partial: 'chart'
--#= Github.new(oauth_token: session[:token]).repos.list
 = render partial: 'shared/label', collection: @labels.uniq_labels, as: :label

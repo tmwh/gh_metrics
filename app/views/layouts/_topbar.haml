@@ -14,7 +14,8 @@
       %ul
         = form_tag root_path(repository: ''), method: :get do
           .select-wrapper.right
-            = select_tag 'repository', options_for_select(@repositories), class: 'js-repositories-select'
+            = select_tag 'repository', options_for_select(@repositories, params[:repository]),
+              class: 'js-repositories-select'
       %ul#nav-mobile.right
         %li
           %a.dropdown-button{'chartLineData-activates': 'dropdown1', href: "#!"}
