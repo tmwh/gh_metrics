@@ -1,24 +1,28 @@
 let [chartLineData, pieChartData] =
   [
     {
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      series: [
-        [1, 5, 2, 5, 4, 3],
-        [2, 3, 4, 8, 1, 2],
-        [5, 4, 3, 2, 1, 12]
-      ]
+      labels: [],
+      series: [],
+      colors:[]
     },
     {
-      series: [5,4,3]
+      series: []
     }
   ];
 
 
 $(()=> {
-  let data  = $('#line-chart').data('collection');
+  let data = $('#line-chart').data('collection');
+  let colors = $('#line-chart').data('label-colors');
+  let days = $('#line-chart').data('days-of-week');
+
+  chartLineData.labels = days
 
   if ($('#line-chart, #pie-chart').length) {
-    if (data.length) {chartLineData.series = data}
+    if (data.length) {
+      chartLineData.series = data
+      chartLineData.colors = colors
+    }
 
     let lineChart = new Chartist.Line('#line-chart', chartLineData, {
       low: 0,
@@ -28,5 +32,13 @@ $(()=> {
     });
 
     let pieChart = new Chartist.Pie('#pie-chart', pieChartData, {})
+
+    lineChart.on('draw', (context) => {
+      if(context.type === 'line') {
+        context.element.attr({
+          style: `stroke: #${chartLineData.colors[context.seriesIndex]}`
+        });
+      }
+    });
   }
 });

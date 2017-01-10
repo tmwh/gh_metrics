@@ -4,7 +4,7 @@ class MetricsController < ApplicationController
 
   def index
     @repositories = load_repositories
-    @events = GroupedEventsCarrier.new(load_events).collection
+    @grouped_events_carrier = GroupedEventsCarrier.new(load_events)
     @labels = LabelsCarrier.new(load_events)
   end
 

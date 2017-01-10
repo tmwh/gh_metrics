@@ -2,11 +2,13 @@
 class GroupedEventsCarrier
   WEEK = 7
 
-  LABELS = {
-    IN_PROGRESS: 'Status: In Progress',
-    CODE_REVIEW: 'Status: Code Review',
-    TO_VERIFY: 'Status: To Verify'
-  }
+  NEEDED_LABELS = [
+    'Status: Ready',
+    'Status: In Progress',
+    'Status: Code Review',
+    'Status: To Verify',
+    'Type: Bug'
+  ]
 
   attr_reader :events
 
@@ -15,14 +17,22 @@ class GroupedEventsCarrier
   end
 
   def collection
-    WEEK.times.reduce([]) do |arr, index|
-      if (0..6).include? index
-        nested_arr = []
-        nested_arr << events.where(created: [Date.today - index], label_name: LABELS[:IN_PROGRESS]).count
-        nested_arr << events.where(created: [Date.today - index], label_name: LABELS[:CODE_REVIEW]).count
-        nested_arr << events.where(created: [Date.today - index], label_name: LABELS[:TO_VERIFY]).count
-        arr << nested_arr
-      end
+    NEEDED_LABELS.reduce([]) do |array, label|
+      array << WEEK.times.reduce([]) do |week, index|
+        week << events.where(created: [Date.today - index], label_name: label).count
+      end.reverse
     end
+  end
+
+  def label_colors
+    NEEDED_LABELS.reduce([]) do |array, label|
+      array << events.find_by_label_name(label).label_color
+    end
+  end
+
+  def days_of_week
+    WEEK.times.reduce([]) do |array, index|
+      array << (Date.today - index).strftime('%a')
+    end.reverse
   end
 end
