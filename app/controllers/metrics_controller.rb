@@ -8,10 +8,10 @@ class MetricsController < ApplicationController
     @labels = LabelsCarrier.new(load_events)
   end
 
+  private
+
   def load_repositories
-    @repositories = Github.new(oauth_token: session[:token]).repos.list.reduce([]) do |arr, repo|
-      arr << repo.name
-    end
+    Github.new(oauth_token: session[:token]).repos.list.map(&:name)
   end
 
   def load_events

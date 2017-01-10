@@ -1,5 +1,8 @@
 class AuthenticationController < ApplicationController
   def index
+    if login?
+      reset_session
+    end
   end
 
   def create
