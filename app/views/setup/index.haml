@@ -1,0 +1,10 @@
+.project-selection.js-project-selection{ 'data-url': update_labels_path }
+  = select_tag 'backlog', options_for_select(@repositories), id: :project_selection
+.row.js-labels-list
+  - if @labels.uniq_labels.nil?
+    .col.s12= t('no_labels')
+  - else
+    = render partial: 'setup/labels', collection: @labels.label_status,
+                                      as: :label,
+                                      locals: { select_options: @labels.labels_name_list }
+

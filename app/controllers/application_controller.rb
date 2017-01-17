@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+  LOAD_EVENTS_DATE_RANGE = Array(Date.today - 7..Date.today)
+
   def check_user_login
     unless user_signed_in?
       flash[:notice] = 'Please login first!'
@@ -29,5 +31,19 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_login
     redirect_to login_path
+  end
+
+  protected
+
+  def load_repositories
+    Github.new(oauth_token: session[:token]).repos.list.map(&:name)
+  end
+
+  def load_events
+    if params[:repository].present?
+      Event.where(repo: params[:repository], created: LOAD_EVENTS_DATE_RANGE)
+    else
+      Event.where(repo: load_repositories.first, created: LOAD_EVENTS_DATE_RANGE)
+    end
   end
 end
