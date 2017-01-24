@@ -140,10 +140,17 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (2.2.1)
     rake (12.0.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    react_on_rails (6.4.2)
+      addressable
+      connection_pool
+      execjs (~> 2.5)
+      rails (>= 3.2)
+      rainbow (~> 2.1)
     redis (3.3.2)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -207,6 +214,7 @@ DEPENDENCIES
   rails-assets-fontawesome!
   rails-assets-jquery!
   rails-assets-materialize!
+  react_on_rails
   sass-rails (~> 5.0)
   sidekiq
   spring

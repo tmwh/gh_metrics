@@ -20,6 +20,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'github_api'
 
+gem 'react_on_rails'
+
 gem 'sidekiq'
 
 group :development, :test do
