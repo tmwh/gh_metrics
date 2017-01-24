@@ -18,9 +18,7 @@ module GithubActions
     attr_reader :user, :token
 
     def attributes_for(repository)
-      {
-        name: repository.name
-      }
+      { name: repository.name }
     end
   end
 end
