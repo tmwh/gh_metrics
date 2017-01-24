@@ -10,7 +10,7 @@
       %li.divider
       %li
         %a{:href => "#!"} Repo3
-    - if login?
+    - if user_signed_in?
       %ul
         = form_tag root_path(repository: ''), method: :get do
           .select-wrapper.right
@@ -21,7 +21,7 @@
           %a.dropdown-button{'chartLineData-activates': 'dropdown1', href: "#!"}
             Repositories
             %i.material-icons.right
-      - if login?
+      - if user_signed_in?
         %li
           = link_to 'Logout', logout_path, method: :destroy, class: 'right'
 
