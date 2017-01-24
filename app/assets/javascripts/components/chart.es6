@@ -28,7 +28,8 @@ $(()=> {
       low: 0,
       showArea: true,
       showPoint: false,
-      fullWidth: true
+      fullWidth: true,
+      height: '400px'
     });
 
     let pieChart = new Chartist.Pie('#pie-chart', pieChartData, {})
