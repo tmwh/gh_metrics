@@ -15,18 +15,18 @@ class ApplicationController < ActionController::Base
   end
 
   def reset_session
-    session[:username] = ''
+    session[:user_github_id] = ''
     session[:token] = ''
   end
 
   def user_signed_in?
-    session[:username].present? && session[:token].present?
+    session[:token].present?
   end
 
   def current_user
     return @_current_user if defined?(@_current_user)
     return unless user_signed_in?
-    @_current_user = User.find_by(github_name: session[:username])
+    @_current_user = User.find_by(github_id: session[:user_github_id])
   end
 
   def redirect_to_login
