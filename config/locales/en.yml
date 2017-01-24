@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  sessions:
+    invalid_token: 'Invalid token'
+  errors:
+    messages:
+      network_error: 'Network error: please try again later'
