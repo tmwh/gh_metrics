@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :login?, :current_user
+  helper_method :user_signed_in?, :current_user
+
+  private
 
   def check_user_login
-    unless login?
+    unless user_signed_in?
       flash[:notice] = 'Please login first!'
       redirect_to_login
       reset_session
@@ -15,14 +17,14 @@ class ApplicationController < ActionController::Base
     session[:token] = ''
   end
 
-  def login?
+  def user_signed_in?
     session[:username].present? && session[:token].present?
   end
 
   def current_user
-    if login?
-      User.find_by_github_name(session[:username])
-    end
+    return @_current_user if defined?(@_current_user)
+    return unless user_signed_in?
+    @_current_user = User.find_by(github_name: session[:username])
   end
 
   def redirect_to_login
