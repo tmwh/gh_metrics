@@ -2,6 +2,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'react', to: 'metricx#index'
   root to: 'metrics#index'
   get 'login', to: 'authentication#index'
   post 'login', to: 'authentication#create'

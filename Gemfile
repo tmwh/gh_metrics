@@ -49,3 +49,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-chartLineData gem
 gem 'tzinfo-chartLineData', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby
