@@ -1,4 +1,6 @@
 class AuthenticationController < ApplicationController
+  before_action :validate_token, only: :create
+
   def index
     if login?
       reset_session
@@ -21,6 +23,21 @@ class AuthenticationController < ApplicationController
 
   def destroy
     reset_session
+    redirect_to_login
+  end
+
+  private
+
+  def validate_token
+    unless GithubActions::ValidateTokenService.new(params.require(:user)[:token]).perform
+      login_error(t('sessions.invalid_token'))
+    end
+  rescue Faraday::ConnectionFailed
+    login_error(t('errors.messages.network_error'))
+  end
+
+  def login_error(message)
+    flash[:notice] = message
     redirect_to_login
   end
 end
