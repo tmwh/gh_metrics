@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :login?
+  helper_method :login?, :current_user
 
   def check_user_login
     unless login?
@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
 
   def login?
     session[:username].present? && session[:token].present?
+  end
+
+  def current_user
+    if login?
+      User.find_by_github_name(session[:username])
+    end
   end
 
   def redirect_to_login

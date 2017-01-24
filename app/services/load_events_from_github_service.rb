@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class LoadEventsFromGithubService
+  attr_reader :user
+
   LABELED_EVENT = 'labeled'
   EVENTS_PER_PAGE = 100
   DEFAULT_SINCE_VALUE = 6.months.ago.iso8601
@@ -19,7 +21,8 @@ class LoadEventsFromGithubService
         if add_new_event?(event)
           Event.create!(
             github_id: event.id, label_name: event.label.name, label_color: event.label.color,
-            actor: event.actor.login, created: Date.parse(event.created_at), repo: issue[:repo]
+            actor: event.actor.login, created: Date.parse(event.created_at), repo: issue[:repo],
+            user_id: user.id
           )
         end
       end
@@ -52,11 +55,11 @@ class LoadEventsFromGithubService
   end
 
   def since_issues_value
-    Event.any? ? last_event_formatted_created_date : DEFAULT_SINCE_VALUE
+    Event.where(user_id: user.id).any? ? last_event_formatted_created_date : DEFAULT_SINCE_VALUE
   end
 
   def last_event_formatted_created_date
-    (Date.today - Event.order(:created).last.created).to_i.days.ago.iso8601
+    Event.order(:created).last.created.to_time.utc.iso8601
   end
 
   def github
