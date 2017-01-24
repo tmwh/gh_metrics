@@ -1,5 +1,4 @@
 class SetupController < ApplicationController
-
   def index
     @repositories = load_repositories
     @labels = LabelsCarrier.new(load_events)

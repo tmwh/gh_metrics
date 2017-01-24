@@ -32,3 +32,4 @@ en:
   labels:
     repositories: "Repositories"
     app_name: "Github Metrics"
+  no_labels: 'No events for current repository'
