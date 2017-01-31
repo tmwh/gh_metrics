@@ -96,3 +96,11 @@
 .ct-series-c .ct-area {
   fill: darken($ct-line-c, 20%);
 }
+
+.ct-chart .ct-grid.ct-vertical,
+.ct-chart .ct-grid.ct-horizontal,
+.ct-chart .ct-label.ct-vertical,
+.ct-chart .ct-label.ct-horizontal {
+  stroke: #fff;
+  color: #fff;
+}

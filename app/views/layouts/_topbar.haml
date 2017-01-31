@@ -1,18 +1,8 @@
 %nav
   .nav-wrapper
-    = link_to t('labels.app_name'), '#', class: 'brand-logo left'
+    = link_to '#', class: 'brand-logo left' do
+      = svg 'gm_logo'
 
     - if user_signed_in?
-      %ul
-        = form_tag root_path(repository: ''), method: :get do
-          .select-wrapper.right
-            = select_tag 'repository', options_for_select(@repositories, params[:repository]),
-              class: 'js-repositories-select'
       %ul#nav-mobile.right
-        %li
-          %a.dropdown-button{'chartLineData-activates': 'dropdown1', href: "#!"}
-            = t('labels.repositories')
-            %i.material-icons.right
-        %li= link_to t('buttons.setup_repositories'), setup_path, class: 'right'
-
         %li= link_to t('buttons.logout'), logout_path, method: :destroy, class: 'right'
