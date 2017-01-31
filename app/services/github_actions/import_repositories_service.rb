@@ -7,18 +7,15 @@ module GithubActions
 
     def perform
       Github.new(oauth_token: token).repos.list do |repository|
-        record = Repository.find_or_initialize_by(github_id: repository.id)
-        record.update!(attributes_for(repository))
-        user.repositories << record
+        unless Repository.find_by(id: repository.id).present?
+          record = Repository.create!(github_id: repository.id, name: repository.name)
+          user.repositories << record
+        end
       end
     end
 
     private
 
     attr_reader :user, :token
-
-    def attributes_for(repository)
-      { name: repository.name }
-    end
   end
 end

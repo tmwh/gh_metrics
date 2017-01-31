@@ -14,7 +14,7 @@ let [chartLineData, pieChartData] =
 $(()=> {
   let data = $('#line-chart').data('collection');
   let colors = $('#line-chart').data('label-colors');
-  let days = $('#line-chart').data('days-of-week');
+  let days = $('#line-chart').data('days');
 
   chartLineData.labels = days
 

@@ -1,10 +1,11 @@
 %nav
   .nav-wrapper
-    = link_to t('labels.app_name'), '#', class: 'brand-logo left'
+    = link_to t('labels.app_name'), root_path, class: 'brand-logo left'
 
     - if user_signed_in?
       %ul
-        = form_tag root_path(repository: ''), method: :get do
+        = form_tag root_path(repository: '', date_range: params[:date_range]), method: :get do
+          = hidden_field_tag :date_range, params[:date_range]
           .select-wrapper.right
             = select_tag 'repository', options_for_select(@repositories, params[:repository]),
               class: 'js-repositories-select'

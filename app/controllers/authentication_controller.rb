@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
 
   def create
     session[:token] = params[:user][:token]
-    session[:user_github_id] = load_user.id
+    session[:user_github_id] = load_user.github_id
     GithubActions::ImportRepositoriesService.new(load_user, session[:token]).perform
     LoadEventsJob.perform_later(session[:token], load_user)
     redirect_to root_path

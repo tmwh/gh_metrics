@@ -1,0 +1,11 @@
+= form_tag root_path(date_range: params[:date_range], repository: params[:repository]), method: :get do
+  = hidden_field_tag :repository , params[:repository]
+  = radio_button_tag 'date_range', 'week', checked_date_range_radio?('week'),
+    class: 'js-date-range-radio'
+  %label{ for: 'date_range_week'} Week
+  = radio_button_tag 'date_range', 'month', checked_date_range_radio?('month'),
+    class: 'js-date-range-radio'
+  %label{ for: 'date_range_month'} Month
+  = radio_button_tag 'date_range', '3_months', checked_date_range_radio?('3_months'),
+    class: 'js-date-range-radio'
+  %label{ for: 'date_range_3_months'} 3 Months
