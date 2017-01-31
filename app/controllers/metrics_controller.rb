@@ -1,6 +1,6 @@
 class MetricsController < ApplicationController
   before_action :check_user_login
-  rescue_from Github::Error::NotFound || Github::Error::Unauthorized, with: :redirect_to_login
+  LOAD_EVENTS_DATE_RANGE = Array(Date.today - 6..Date.today)
 
   def index
     @repositories = load_repositories

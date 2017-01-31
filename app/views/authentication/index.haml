@@ -4,10 +4,6 @@
   = form_tag login_path, method: :post, class: 'sign-in' do
     .row
       .input-field
-        %label Name
-        = text_field :user, 'name', require: true
-    .row
-      .input-field
         %label Token
         = password_field :user, 'token', require: true
     = submit_tag 'sign in with your github credentials',
