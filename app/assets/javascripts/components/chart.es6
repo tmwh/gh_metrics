@@ -6,22 +6,30 @@ let [chartLineData, pieChartData] =
       colors: []
     },
     {
-      series: []
+      series: [],
+      colors: []
     }
   ];
 
 
 $(()=> {
-  let data = $('#line-chart').data('collection');
-  let colors = $('#line-chart').data('label-colors');
-  let days = $('#line-chart').data('days-of-week');
+  let lineData = $('#line-chart').data('collection');
+  let lineColors = $('#line-chart').data('label-colors');
+  let lineDays = $('#line-chart').data('days');
+  let pieData = $('#pie-chart').data('collection');
+  let pieColors = $('#pie-chart').data('label-colors');
 
-  chartLineData.labels = days
+  chartLineData.labels = lineDays
 
   if ($('#line-chart, #pie-chart').length) {
-    if (data.length) {
-      chartLineData.series = data
-      chartLineData.colors = colors
+    if (lineData.length) {
+      chartLineData.series = lineData
+      chartLineData.colors = lineColors
+    }
+
+    if (pieData.length) {
+      pieChartData.series = pieData
+      pieChartData.colors = pieColors
     }
 
     let lineChart = new Chartist.Line('#line-chart', chartLineData, {
@@ -32,7 +40,19 @@ $(()=> {
       height: '400px'
     });
 
-    let pieChart = new Chartist.Pie('#pie-chart', pieChartData, {})
+    let pieChart = new Chartist.Pie('#pie-chart', pieChartData, {
+      height: '400px',
+      chartPadding: 30,
+      labelOffset: 100
+    });
+
+    pieChart.on('draw', (context) => {
+      if (context.type === 'slice') {
+        context.element.attr({
+          style: `fill: #${pieChartData.colors[context.index]}`
+        });
+      }
+    });
 
     lineChart.on('draw', (context) => {
       if (context.type === 'line') {
