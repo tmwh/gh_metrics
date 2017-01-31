@@ -34,6 +34,6 @@ class AuthenticationController < ApplicationController
   end
 
   def load_user
-    GithubActions::LoadUserService.new(params[:user][:token]).perform
+    @_load_user ||= GithubActions::LoadUserService.new(params[:user][:token]).perform
   end
 end
