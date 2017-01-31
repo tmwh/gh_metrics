@@ -20,9 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   sessions:
     invalid_token: 'Invalid token'
   errors:
     messages:
       network_error: 'Network error: please try again later'
+  no_labels: 'No events for current repository'
+  buttons:
+    setup_repositories: 'Setup Repositories'
+    logout: 'Logout'
+  labels:
+    repositories: 'Repositories'
+    app_name: 'Github Metrics'

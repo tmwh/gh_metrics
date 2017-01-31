@@ -9,6 +9,6 @@
     .row
       .input-field
         %label Token
-        = text_field :user, 'token', require: true
+        = password_field :user, 'token', require: true
     = submit_tag 'sign in with your github credentials',
       class: 'waves-effect waves-light btn-large submit-btn'

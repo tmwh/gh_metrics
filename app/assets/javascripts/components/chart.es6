@@ -3,7 +3,7 @@ let [chartLineData, pieChartData] =
     {
       labels: [],
       series: [],
-      colors:[]
+      colors: []
     },
     {
       series: []
@@ -35,11 +35,31 @@ $(()=> {
     let pieChart = new Chartist.Pie('#pie-chart', pieChartData, {})
 
     lineChart.on('draw', (context) => {
-      if(context.type === 'line') {
+      if (context.type === 'line') {
         context.element.attr({
           style: `stroke: #${chartLineData.colors[context.seriesIndex]}`
         });
       }
     });
   }
+
+
+  $('#project_selection').on('change', (e) => {
+    let [ url, param, labels_list] = [
+      $(e.target).closest('.js-project-selection').data('url'),
+      $(e.target).val(),
+      $('.js-labels-list')];
+
+    fetch(`${url}?repository=${param}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((labels) => {
+        labels_list.html(labels.html);
+        labels_list.find('select').material_select();
+      })
+      .catch((err) => {
+        Materialize.toast('Something went wrong', 4000);
+      });
+  })
 });

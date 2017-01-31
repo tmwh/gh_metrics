@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'login', to: 'authentication#create'
   get 'logout', to: 'authentication#destroy'
   post 'logout', to: 'authentication#destroy'
+  get 'setup', to: 'setup#index'
+  get 'update_labels', to: 'setup#update_labels'
 
   mount Sidekiq::Web => '/sidekiq'
 end
