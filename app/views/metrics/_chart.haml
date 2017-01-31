@@ -1,4 +1,9 @@
 .bar-primary
+  .pull-right
+    = form_tag root_path(repository: ''), method: :get do
+      .select-wrapper.right
+        = select_tag 'repository', options_for_select(@repositories, params[:repository]),
+              class: 'js-repositories-select'
   .title Cumulative flow diagram
 .row
   .col.s12

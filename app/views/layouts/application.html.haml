@@ -9,6 +9,7 @@
   %body
 
     = render partial: 'layouts/topbar'
+    = render partial: 'layouts/navigation'
     .container
       = render 'shared/flash', notice: flash[:notice]
       = yield

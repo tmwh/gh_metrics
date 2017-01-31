@@ -6,9 +6,25 @@ $success-color: lighten($primary-color, 30%)  !default;
 $error-color: red !default;
 $link-color: $primary-color !default;
 
+$font-size-base: 12px;
+$font-line-height: $font-size-base * 1.44;
+
 //Charts
 $labels-color: rgba(0, 0, 0, 0.5);
 $grid-color:  rgb(47, 47, 47);
 $ct-line-a: saturate($primary-color, 20%);
 $ct-line-b: adjust-hue($primary-color, 20%);
 $ct-line-c: desaturate($primary-color, 20%);
+
+
+
+//New design variables
+$nav-menu-bg: #283049;
+$nav-menu-bg-hover: #232a40;
+$nav-color: #636b85;
+$nav-color-hover: #c4c4d3;
+
+$header-bg: #25283f;
+
+$content-block-bg-1: #191d33;
+$content-block-bg-2: #2a2e44;

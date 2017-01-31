@@ -1,7 +1,16 @@
 //$primary-color: #26a69a;
 
 nav {
-  background-color: $primary-color;
+  background-color: $header-bg;
+
+  .brand-logo {
+
+    svg {
+      height: 40px;
+      margin: 10px;
+      width: 40px;
+    }
+  }
 }
 
 html, body {
@@ -9,17 +18,17 @@ html, body {
 }
 
 body {
-  background: lighten($primary-color, 30%);
+  @include gradient-directional();
 }
 
 .container {
   margin-top: 0.75rem;
-  background-color: #fff;
+  background-color: transparent;
   padding: 0 0.75rem 0.75rem 0.75rem;
 }
 
 .bar-primary {
-  background-color: $primary-color;
+  background-color: transparent;
   padding: 1rem 2rem;
   margin: {
     left: -0.75rem;
@@ -39,4 +48,35 @@ body {
   .submit-btn {
     display: block;
   }
+}
+
+.menu {
+  position: fixed;
+  width: 250px;
+  background-color: $nav-menu-bg;
+  height: calc(100% - 64px);
+
+  li {
+    a {
+      color: $nav-color;
+      display: block;
+      line-height: $font-line-height;
+      padding: 20px;
+
+      i {
+        padding-right: 5px;
+      }
+
+      &:hover {
+        background-color: $nav-menu-bg-hover;
+        color: $nav-color-hover;
+      }
+    }
+  }
+}
+
+.svg-icon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
 }

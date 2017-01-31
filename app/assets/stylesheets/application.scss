@@ -1,4 +1,11 @@
+@import 'fontawesome';
 @import 'variables';
+@import 'mixins/*';
 @import 'chartist';
 @import 'materialize';
 @import 'components/*';
+
+
+li {
+  list-style-type: none;
+}
