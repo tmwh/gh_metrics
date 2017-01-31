@@ -11,4 +11,5 @@
     .bar-primary
       .title Issue today
     .chart-wrapper
-      #pie-chart.ct-chart
+      #pie-chart.ct-chart{ data: { collection: @grouped_events_carrier.collection_today,
+                                   label_colors: @grouped_events_carrier.label_colors_today } }

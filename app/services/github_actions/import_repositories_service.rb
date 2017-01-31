@@ -7,7 +7,7 @@ module GithubActions
 
     def perform
       Github.new(oauth_token: token).repos.list do |repository|
-        unless Repository.find_by(id: repository.id).present?
+        unless Repository.find_by(github_id: repository.id).present?
           record = Repository.create!(github_id: repository.id, name: repository.name)
           user.repositories << record
         end

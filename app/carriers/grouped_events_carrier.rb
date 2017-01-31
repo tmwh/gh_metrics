@@ -10,19 +10,24 @@ class GroupedEventsCarrier
   end
 
   def label_colors
-    uniq_labels.reduce([]) do |array, label|
-      array << events.find_by_label_name(label).label_color
-    end
+    events.group_by(&:label_color).keys
   end
 
   def days
     weekly_or_monthly? ? week_or_month_days : three_months_days
   end
 
+  def collection_today
+    events.where(created: Date.today).group_by(&:label_name).values.map(&:count)
+  end
+
+  def label_colors_today
+    events.where(created: Date.today).group_by(&:label_color).keys
+  end
+
   private
 
   attr_reader :events, :date_range_params
-
 
   def week_or_month_days
     date_range_count.times.reduce([]) do |array, index|
@@ -57,7 +62,10 @@ class GroupedEventsCarrier
   end
 
   def date_range_for_per_week_format(index)
-    Array(Date.today.advance(weeks: - (index + 1)) + 1..Date.today.advance(days: (Date.today.advance(weeks: - index) + 1..Date.today).count))
+    Array(Date.today.advance(weeks: - (index + 1)) + 1..Date.today.advance(days: -(Date.today.advance(weeks: - index) + 1..Date.today).count))
+    # Will generate array of 7 dates per each week, example:
+    # for case when index 0: [6 days ago..today]
+    # for case when index 1: [13 days ago..today - 7 days] etc
   end
 
   def formatted_weekly_date_range(index)
